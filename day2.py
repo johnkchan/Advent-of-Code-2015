@@ -1003,13 +1003,13 @@ key = '''29x13x26
 def day2part1(key: str) -> int:
     output = 0
     for dimensions in key.splitlines():
-        dimensions = dimensions.split("x")
-        l, w, h = int(dimensions[0]), int(dimensions[1]), int(dimensions[2])
-        smallestSide = 2**32 - 1
+        l, w, h = [int(i) for i in dimensions.split("x")]
+        smallestSide = float('inf')
         for i in [l * w, w * h, h * l]:
+            output += 2 * i
+
             if i < smallestSide:
                 smallestSide = i
-            output += 2 * i
 
         output += smallestSide
 
@@ -1019,14 +1019,14 @@ def day2part1(key: str) -> int:
 def day2part2(key: str) -> int:
     output = 0
     for dimensions in key.splitlines():
-        dimensions = dimensions.split("x")
-        l, w, h = int(dimensions[0]), int(dimensions[1]), int(dimensions[2])
+        l, w, h = [int(i) for i in dimensions.split("x")]
 
         # Determine shortest distance around sides
         smallestSide = 2 ** 32-1
         for i in [l + w, w + h, h + l]:
             if i < smallestSide:
                 smallestSide = i
+
         output += 2 * smallestSide
 
         # Add ribbon required for bow
