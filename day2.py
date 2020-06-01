@@ -1003,8 +1003,10 @@ key = '''29x13x26
 def day2part1(key: str) -> int:
     output = 0
     for dimensions in key.splitlines():
+        # [<l>, <w>, <h>]
         l, w, h = [int(i) for i in dimensions.split("x")]
         smallestSide = float('inf')
+
         for i in [l * w, w * h, h * l]:
             output += 2 * i
 
@@ -1019,6 +1021,7 @@ def day2part1(key: str) -> int:
 def day2part2(key: str) -> int:
     output = 0
     for dimensions in key.splitlines():
+        # [<l>, <w>, <h>]
         l, w, h = [int(i) for i in dimensions.split("x")]
 
         # Determine shortest distance around sides
